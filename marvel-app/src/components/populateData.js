@@ -28,7 +28,6 @@ export function displayCharacters(characters){
 
         characterInformationName.textContent = character.name; 
 
-
         characterImage.appendChild(imgElement); 
         characterInformation.appendChild(characterInformationName);    
 
