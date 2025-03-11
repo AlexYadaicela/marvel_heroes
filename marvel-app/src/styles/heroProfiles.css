@@ -1,0 +1,64 @@
+
+
+
+.character_profile{
+
+    img{
+        width: 15rem;
+    }
+}
+
+.character_profile > .comics_wrapper{
+    display: grid; 
+    gap: 1rem; 
+    grid-template-columns: repeat(3, 15rem);
+    align-items: center;
+    justify-content: center;
+    div{
+        /* background-color: blue; */
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        border: 5px solid rgb(163, 163, 161); 
+        img{
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%)
+        }
+    }
+}
+
+.character_profile .character_details{
+    background-color: red;
+    display: flex; 
+    gap: 3rem; 
+    span:nth-child(1){
+        font-family: var(--ff-secondary);
+        font-weight: var(--fw-bold);
+        font-size: 3rem
+    }
+}
+
+.character_profile .character_details div:nth-child(1) {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    height: 20rem;
+    width: 20rem;
+}
+.character_profile .character_details div:nth-child(2){
+    /* background-color: rgba(0, 0, 255, 0.568); */
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.character_profile .character_details .character_description{
+    /* font-size: char(10);  */
+}
+
+.character_profile > .comics_wrapper > div > img:hover{
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    cursor: pointer;
+}

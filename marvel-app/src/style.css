@@ -1,0 +1,122 @@
+
+:root{
+  --ff-primary:  "Roboto Mono", monospace;
+  --ff-secondary: "Big Shoulders Stencil", sans-serif;
+
+  --fw-bold: 700; 
+}
+
+
+img{
+  max-inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0; 
+}
+
+body{
+  display: grid;
+  place-items: center;
+  margin: 0; 
+  padding: 0; 
+  font-family: var(--ff-primary);
+}
+
+header{
+  z-index: 9999; 
+  position: relative;
+  margin-block-start: 2rem; 
+  margin-block-end: 2rem;
+}
+
+.search_wrapper{
+  display: flex;  
+  gap: 0.5rem; 
+  border: 2px solid black; 
+  height: 2rem;
+  width: 15rem;
+  margin-inline: auto;
+}
+
+.search_wrapper:hover{
+  outline: 2px solid red; 
+  outline-offset: 0.2rem;
+}
+
+.search_wrapper img{
+  width: 1rem; 
+  margin-inline-start: 0.5rem;
+}
+.search_wrapper input{
+  border: 0; 
+  width: 100%; 
+  outline: none;
+}
+
+.result{
+  width: 15rem;
+  margin-inline: auto;
+  background-color: rgba(219, 22, 22, 0.753);
+}
+
+.result_item:hover{
+  cursor: pointer;
+  background-color: rgba(61, 60, 60, 0.603);
+  color: white; 
+}
+
+
+
+.character_details{
+  background-color: red;
+  height: 25rem;
+  width: 15rem; 
+  display: block;  
+}
+
+
+.character{
+  z-index: 1; 
+  margin-inline: auto;
+  width: 15rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  animation: slide-in 0.7s; 
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-1000px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
+.character:hover{
+  cursor: pointer;
+  transform: scale(0.9, 0.9);
+  transition: transform 150ms ease-in-out;
+}
+
+
+.character > 
+.character_image{
+  border-bottom: 5px solid red;
+  img{
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.character > 
+.character_information {
+  padding-block-end: 3rem;
+  .information_name{
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-bold);
+  }
+}

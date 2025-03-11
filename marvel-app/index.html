@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <nav>
+          <div>
+            <div class="search_wrapper" aria-pressed="false">
+              <img src="/search-icon.svg" alt="search icon">
+              <input 
+                autocomplete="off"
+                type="text" 
+                name="search_character"
+                id="search_character"
+                placeholder="Search for"
+                >
+            </div>
+            <div class="search_results" aria-expanded="false"></div>
+          </div>
+        </nav>
+      </header>
+      <main>
+
+        <!-- START: ERASE WHEN CHARACTER IS SELECTED -->
+        <div class="display_content">
+          <div class="display_character">
+            <h1>CHARACTER OF THE DAY</h1>
+            <div class="character_details">
+              <div class="details_img">
+                <img src="" alt="">
+              </div>
+              <div class="details_description">
+                <span class="description_name"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END: ERASE WHEN CHARACTER IS SELECTED -->
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
