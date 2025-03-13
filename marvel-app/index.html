@@ -19,6 +19,7 @@
     <div id="app">
       <header>
         <nav>
+          <a href="nested/character.html">link</a>
           <div>
             <div class="search_wrapper" aria-pressed="false">
               <img src="/search-icon.svg" alt="search icon">
@@ -36,22 +37,27 @@
       </header>
       <main>
 
-        <!-- START: ERASE WHEN CHARACTER IS SELECTED -->
+        <!-- START: RANDOM CHARACTER DISPLAY-->
         <div class="display_content">
           <div class="display_character">
             <h1>CHARACTER OF THE DAY</h1>
             <div class="character_details">
-              <div class="details_img">
-                <img src="" alt="">
+              <div class="details_img" data-visible="false">
+                <!-- character image  -->
               </div>
               <div class="details_description">
-                <span class="description_name"></span>
+                <span class="description_name" data-visible="false"></span>
               </div>
             </div>
           </div>
         </div>
-        <!-- END: ERASE WHEN CHARACTER IS SELECTED -->
+        <!-- END: RANDOM CHARACTER DISPLAY -->
       </main>
+
+      <footer>
+        <!-- marvel api attribute -->
+        <span>Data provided by Marvel. © 2014 Marvel</span>
+      </footer>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

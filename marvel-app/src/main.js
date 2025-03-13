@@ -1,5 +1,4 @@
 import './style.css'; 
-import { displayCharacters } from './components/populateData';
 import { setUpSearch } from './components/handleSearch';
 import cryptoJS from 'crypto-js'; 
 
@@ -27,31 +26,49 @@ inputElement.addEventListener('keyup', () => {
   }
 });
 
-
-
-async function getData(){
+async function fetchCharacterData(){
   try{
+
     let url = `${baseUrl}/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=1`;  
     let response = await fetch(url);
-    if(!response.ok){
+
+    if( !response.ok ){
       throw new Error(`Response status: ${response.status}`); 
     }
+
     let res = await response.json();
-    
+    // get data length to generate random character
     const totalCharacters = res.data.total; 
     const randomCharacter = Math.floor(Math.random() * totalCharacters); 
 
     const charUrl = `${url}&offset=${randomCharacter}`    
     response = await fetch(charUrl);
+
     if(!response.ok){
       throw new Error(`Response status: ${response.status}`); 
     }
 
-    res = await response.json(); 
-    displayCharacters(res.data.results[0]);     
-  }catch(error){
+    const character = await response.json(); 
+    displayCharacter(character.data.results[0]);
+      
+  }catch ( error ){
     console.error(error.message); 
   }
 }
 
-getData(); 
+function displayCharacter(character){
+  const characterImage = document.querySelector('.details_img');
+  const characterName = document.querySelector('.description_name');
+
+  characterImage.setAttribute('data-visible', 'true'); 
+  characterName.setAttribute('data-visible', 'true');
+
+  const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`; 
+  characterImage.style.backgroundImage = `url(${thumbnail})`;
+
+  characterName.textContent = character.name; 
+}
+
+if(window.location.pathname === '/'){
+  fetchCharacterData(); 
+}

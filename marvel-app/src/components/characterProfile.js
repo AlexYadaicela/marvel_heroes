@@ -1,94 +1,82 @@
 import '../styles/heroProfiles.css'; 
 
-
-
-
-export async function generateCharacterPage(baseUrl, ts, publickey, hash, character){
-    try{
-        const comicsWrapper = document.createElement('div'); 
-        if( character.numOfComics !== 0){
-            const url = `${baseUrl}/characters/${character.id}/comics?ts=${ts}&apikey=${publickey}&hash=${hash}&limit=6`; 
+export async function fetchComics(baseUrl, ts, publickey, hash, numOfComics, characterID){
+    if(Number(numOfComics) !== 0){
+        try{
+            const url = `${baseUrl}/characters/${characterID}/comics?ts=${ts}&apikey=${publickey}&hash=${hash}&limit=6`; 
             const response = await fetch (url); 
             if(!response.ok){
                 throw new Error(`Response status: ${response.status}`); 
             }
+            
             const res = await response.json();
             const comics = res.data.results;
+            console.log(comics); 
+
+            const comicItems = document.querySelectorAll('.comic_item'); 
             
-            const fragment = document.createDocumentFragment(); 
-            comicsWrapper.classList.add('comics_wrapper'); 
-            comics.forEach((comic) => {
-                const comicElement = document.createElement('div'); 
-                
-                const img = new Image(); 
-                img.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
-                
-                comicElement.appendChild(img); 
-                
-                fragment.appendChild(comicElement); 
+            comics.forEach((comic, index) => {
+                comicItems[index].setAttribute('data-visible', 'true'); 
+                comicItems[index].style.backgroundImage = `url(${comic.thumbnail.path}.${comic.thumbnail.extension})`; 
             });
-            comicsWrapper.appendChild(fragment); 
+        }catch(error){
+            console.error(error.message); 
         }
-        characterPage(character, comicsWrapper); 
-    
-    // create element to append comics
-    }catch(error){
-        console.error(error.message); 
-    }
-}
-
-const displayContent = document.querySelector('.display_content');
-const displayCharacters = document.querySelector('.display_characters'); 
-
-const fragment = document.createDocumentFragment(); 
-const profile = document.createElement('div'); 
-profile.classList.add('character_profile'); 
-
-const characterInformation = document.createElement('div');
-
-characterInformation.classList.add('character_details'); 
-
-const characterImage = document.createElement('div'); 
-const characterName = document.createElement('div'); 
-const spanName = document.createElement('span'); 
-const spanDetail = document.createElement('span'); 
-
-characterName.appendChild(spanName); 
-characterName.appendChild(spanDetail); 
-
-characterInformation.appendChild(characterImage); 
-characterInformation.appendChild(characterName); 
-
-fragment.appendChild(profile); 
-profile.appendChild(characterInformation);
-
-function characterPage(character, comicsWrapper){
-    if(typeof(displayCharacters) !== 'undefined'){
-        displayContent.removeChild(displayCharacters); 
-
-    }
-    console.log(character);
-    // clear current dom and populate element with current character selection
-
-    characterImage.style.backgroundImage = `url('${character.thumbnail}')`;
-    spanName.textContent = character.name; 
-
-    if(character.description === '' || character.description === ' '){
-        spanDetail.textContent = 'Description not available'; 
     }else{
-        spanDetail.textContent = character.description;
-    }
-
-    spanDetail.classList.add('character_description'); 
-    
-    
-    // if(typeof(comicsWrapper) === Node){
-    //     profile.appendChild(comicsWrapper); 
-    // }
-
-    if(typeof(comicsWrapper) !== 'undefined'){
-        profile.appendChild(comicsWrapper);         
-    }
-    
-    displayContent.appendChild(fragment);
+        const comicItems = document.querySelectorAll('.comic_item'); 
+        comicItems.forEach((item) => {
+            item.removeAttribute('data-visible'); 
+            item.setAttribute('data-blank', 'true'); 
+        });
+    } 
 }
+
+export function characterPage(characterDetails){
+    const comicItems = document.querySelectorAll('.comic_item'); 
+    comicItems.forEach((item) => {
+        item.setAttribute('data-visible', 'false'); 
+        item.removeAttribute('data-blank'); 
+    });
+    console.log(characterDetails);
+    
+    const img = `${characterDetails.thumbnail.path}.${characterDetails.thumbnail.extension}`;
+    console.log(img); 
+
+    const profileImg = document.querySelector('.profile_img'); 
+    profileImg.style.backgroundImage = `url(${img})`;
+
+    const descriptionName = document.querySelector('.profile_name'); 
+    const descriptionDetail = document.querySelector('.profile_detail'); 
+
+    
+    descriptionName.textContent = `${characterDetails.name}`; 
+
+    console.log(characterDetails.name); 
+
+    if(characterDetails.description === ' ' || characterDetails.description === ''){
+        descriptionDetail.textContent = 'No description available'; 
+    }else{
+        descriptionDetail.textContent =  characterDetails.description; 
+    }
+
+    // handle links 
+    const profileLinks = document.querySelector('.links'); 
+    profileLinks.innerHTML = ''; 
+    const fragment = document.createDocumentFragment(); 
+
+    const links = characterDetails.urls; 
+
+    links.forEach((link) => {
+        const liElement = document.createElement('li');
+        const aElement = document.createElement('a');
+        aElement.href = `${link.url}`; 
+        aElement.textContent = `${link.type}`; 
+        aElement.target = '_blank';
+        liElement.appendChild(aElement);
+        fragment.appendChild(liElement); 
+    });
+
+    profileLinks.appendChild(fragment); 
+
+}
+

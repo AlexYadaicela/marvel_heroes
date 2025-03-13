@@ -1,4 +1,4 @@
-import { generateCharacterPage } from "./characterProfile";
+import { characterPage, fetchComics } from "./characterProfile";
 
 export async function setUpSearch(baseUrl, ts, publickey, hash, searchTerm){
     try{
@@ -26,31 +26,30 @@ function createSearchResultBox(baseUrl, ts, publicKey, hash, fetchCharacters){
     ulElement.classList.add('result');
 
     fetchCharacters.forEach((character) => {
-        console.log(character.id); 
         const liElement = document.createElement('li'); 
         liElement.classList.add('result_item'); 
 
         // custom character details
-        const characterDetails = {
-            id : character.id, 
-            name : character.name, 
-            description : character.description, 
-            thumbnail : `${character.thumbnail.path}.${character.thumbnail.extension}`, 
-            numOfComics: character.comics.available
-        }
+        // const characterDetails = {
+        //     id : character.id, 
+        //     name : character.name, 
+        //     description : character.description, 
+        //     thumbnail : `${character.thumbnail.path}.${character.thumbnail.extension}`, 
+        //     numOfComics: character.comics.available, 
+        //     urls: character.urls
+        // }
 
         liElement.addEventListener('click', () => {
             searchResult.innerHTML = ''; 
             searchResult.ariaExpanded = 'false'; 
             inputElement.value = '';
-
-            generateCharacterPage(baseUrl,  ts, publicKey, hash, characterDetails); 
+            characterPage(character);
+            fetchComics(baseUrl, ts, publicKey, hash, character.comics.available, character.id);  
         }); 
 
         liElement.textContent = character.name; 
         fragment.appendChild(liElement); 
     });
-    ulElement.appendChild(fragment); 
-    
+    ulElement.appendChild(fragment);     
     searchResult.appendChild(ulElement); 
 }
