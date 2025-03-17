@@ -1,6 +1,7 @@
 import './style.css'; 
 import { setUpSearch } from './components/handleSearch';
 import cryptoJS from 'crypto-js'; 
+import { characterPage } from './components/characterProfile';
 
 
 const ts = Date.now().toString(); 
@@ -14,7 +15,7 @@ let timer;
 const inputElement = document.getElementById('search_character');
 const searchResult = document.querySelector('.search_results'); 
 
-// handle user request
+// handle user search request
 inputElement.addEventListener('keyup', () => {
   clearTimeout(timer); 
   searchResult.innerHTML = ''; 
@@ -26,9 +27,16 @@ inputElement.addEventListener('keyup', () => {
   }
 });
 
-async function fetchCharacterData(){
-  try{
+const randomCharacterBtn = document.getElementById('get_random_character'); 
 
+randomCharacterBtn.addEventListener('click', () => {
+  randomCharacterBtn.disabled = true; 
+  fetchRandomCharacterData(); 
+});
+
+
+async function fetchRandomCharacterData(){
+  try{
     let url = `${baseUrl}/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=1`;  
     let response = await fetch(url);
 
@@ -49,26 +57,13 @@ async function fetchCharacterData(){
     }
 
     const character = await response.json(); 
-    displayCharacter(character.data.results[0]);
+    characterPage(character.data.results[0]);
       
   }catch ( error ){
     console.error(error.message); 
+  }finally{
+    randomCharacterBtn.disabled = false; 
   }
 }
 
-function displayCharacter(character){
-  const characterImage = document.querySelector('.details_img');
-  const characterName = document.querySelector('.description_name');
-
-  characterImage.setAttribute('data-visible', 'true'); 
-  characterName.setAttribute('data-visible', 'true');
-
-  const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`; 
-  characterImage.style.backgroundImage = `url(${thumbnail})`;
-
-  characterName.textContent = character.name; 
-}
-
-if(window.location.pathname === '/'){
-  fetchCharacterData(); 
-}
+fetchRandomCharacterData(); 

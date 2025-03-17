@@ -9,18 +9,16 @@ export async function setUpSearch(baseUrl, ts, publickey, hash, searchTerm){
         }
         const res = await response.json(); 
         const fetchCharacters = res.data.results; 
-        createSearchResultBox(baseUrl, ts, publickey, hash, fetchCharacters); 
+        createSearchResultBox(fetchCharacters); 
     }catch(error){
         console.error(error.message);
     }
 }
 
-function createSearchResultBox(baseUrl, ts, publicKey, hash, fetchCharacters){
+function createSearchResultBox(fetchCharacters){
     const fragment = document.createDocumentFragment(); 
     const searchResult = document.querySelector('.search_results'); 
     const inputElement = document.getElementById('search_character'); 
-
-    searchResult.ariaExpanded = 'true'; 
 
     const ulElement = document.createElement('ul');
     ulElement.classList.add('result');
@@ -29,21 +27,11 @@ function createSearchResultBox(baseUrl, ts, publicKey, hash, fetchCharacters){
         const liElement = document.createElement('li'); 
         liElement.classList.add('result_item'); 
 
-        // custom character details
-        // const characterDetails = {
-        //     id : character.id, 
-        //     name : character.name, 
-        //     description : character.description, 
-        //     thumbnail : `${character.thumbnail.path}.${character.thumbnail.extension}`, 
-        //     numOfComics: character.comics.available, 
-        //     urls: character.urls
-        // }
-
         liElement.addEventListener('click', () => {
-            searchResult.innerHTML = ''; 
-            searchResult.ariaExpanded = 'false'; 
+            searchResult.innerHTML = '';  
             inputElement.value = '';
-            characterPage(character);
+
+        characterPage(character);
         });  
 
         liElement.textContent = character.name; 

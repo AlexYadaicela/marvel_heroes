@@ -3,6 +3,8 @@
   --ff-primary:  "Roboto Mono", monospace;
   --ff-secondary: "Big Shoulders Stencil", sans-serif;
 
+  --fw-medium: 500; 
+  --fw-semi-bold: 600; 
   --fw-bold: 700; 
 }
 
@@ -21,6 +23,14 @@ ul{
 *{
   font:inherit;
 }
+li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
 body{
   margin: 0; 
   padding: 0; 
@@ -28,18 +38,20 @@ body{
   background-color: #000000;
 }
 
+
+
 #app{
   display: grid;
   grid-template-areas:
   "header header"
   "main main"
   "footer footer"; 
-  grid-template-rows: 5rem auto 1rem; 
+  grid-template-rows: 4rem auto 1rem; 
 }
 
 header{
   z-index: 9999;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   grid-area: header;
   background-color: #9d0208;
@@ -57,6 +69,22 @@ main{
   display: grid;
   place-items: center;
 } */
+
+
+/* nav{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+} */
+
+.search__{
+  display: flex;
+  gap: 0.5rem; 
+  justify-content: center;
+  align-items: center;
+}
+
 .search_wrapper{
 
   -webkit-box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
@@ -73,8 +101,25 @@ main{
   
   height: 2rem;
   width: 17rem;
+}
 
-  margin-inline: auto;
+.random_character button{
+  -webkit-box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
+  
+  border: 1px solid black; 
+  height: 1.7rem;
+  border-radius: 5px;
+  font-weight: var(--fw-medium);
+
+  font-size: 0.785rem; 
+}
+
+.random_character button:hover{
+  cursor: pointer;
+  transform: scale(0.9, 0.9);
+  background-color: #e69201;
 }
 
 .search_wrapper:hover{
@@ -105,69 +150,8 @@ main{
   color: white; 
 }
 
-.character_details{
-  margin-inline: auto;
-  border: 3px solid white; 
-  width: 15rem; 
-  
-  transition: transform 250ms ease-in-out;
-}
 
-.details_img[data-visible='false']{
-  animation: slide-in 1s infinite; 
-}
-
-.details_img{
-  width: auto;
-  height: 15rem;
-  background-color: rgb(221, 218, 218);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-bottom: 5px solid rgb(194, 3, 3);
-}
-.display_character h1{ 
-  margin: 1rem; 
-  font-family: var(--ff-secondary);
-  color: white; 
-  text-align: center;
-  font-weight: 900;
-  font-size: 3rem; 
-}
-
-.details_description{
-  background-color: black;
-  height: 6rem;
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-}
-
-.description_name{
-  /* background-color: blue;  */
-  color: white;
-  /* font-size: 1.785rem;  */
-  font-family: var(--ff-secondary);
-  font-weight: var(--fw-bold);
-}
-
-.description_name[data-visible="false"]{
-  animation: slide-in 1s infinite;
-  width: 10rem; 
-  height: 1rem;
-  display: block; 
-  /* width: 5rem;  */
-  border-radius: 15px;
-}
-
-.character_details:hover{
-  cursor: pointer;
-  color: rgb(255, 13, 13);
-  /* box-shadow: 0px 15px 60px rgba(245, 245, 245, 0.514); */
-  transform: scale(0.9, 0.9);
-}
-
-@keyframes slide-in {
+/* @keyframes slide-in {
   0%{
     background-color: rgb(221, 218, 218);
   }
@@ -177,5 +161,176 @@ main{
   100%{
     background-color: rgb(221, 218, 218);
 }
+} */
+
+
+.character_content{
+    margin-block-start: 3rem; 
 }
 
+.content_profile{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile_img{
+    width: 20rem; 
+    height: 20rem;
+    background-color: grey;
+    background-position: center;
+    background-size: 320px 320px; 
+    background-repeat: no-repeat;
+}
+
+.profile_description{
+    color: white; 
+}
+
+.profile_name{
+    font-size: 2.875rem; 
+    font-weight: var(--fw-bold);
+    font-family: var(--ff-secondary);
+}
+
+.profile_detail{ 
+  width: 30rem;
+  font-weight: var(--fw-medium);
+}
+
+.links{
+    display: flex; 
+    gap: 1rem;  
+}
+
+.links li{    
+    background-color: #e69201;
+    border: 1px solid black;  
+    border-radius: 5px;
+    padding-block: 0.2rem; 
+}
+
+.links li a{
+    color: black;
+    font-weight: var(--fw-semi-bold);
+    padding-inline: 0.5rem;
+}
+
+.links li:hover{
+    background-color: white;
+    transform: scale(0.9, 0.9);
+}
+
+.content_information{
+  /* background-color: red; */
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: 3rem; 
+}
+.content_tabs{
+    display: flex;
+    /* padding: 1rem;  */
+    /* width: 10rem;   */
+    /* gap: 1rem;  */
+    /* align-items: center;
+    justify-content: center; */
+    /* border-bottom: 5px solid red;  */
+}
+
+
+.tab button{
+  height: 3rem;
+  border: 0; 
+  padding-inline: 1rem;
+  font-weight: var(--fw-semi-bold);
+  font-style: var(--ff-primary);
+}
+
+.tab .active{
+  background-color: #e69201;
+}
+
+.tab button:not(.active):hover{
+  background-color: #e69201;
+  cursor: pointer;
+  transform: scale(0.9, 0.9);
+}
+
+.tab:nth-child(1) button{
+  border-radius: 5px 0 0 5px ;
+}
+
+.tab:nth-child(3) button{
+  border-radius: 0 5px 5px 0;
+}
+
+.content_comics{
+    display: grid;
+    grid-template-columns: repeat(3, 10rem);
+
+    margin-block-start: 1rem; 
+
+    width: 27rem; 
+    gap: 1rem; 
+    justify-content: center;
+    align-items: center;
+}
+
+.comic_item{
+    height: 15rem;
+    width: 10rem;
+    display: block; 
+    border: 5px solid white; 
+    text-align: center;
+    font-weight: var(--fw-medium);
+    font-variant: small-caps;
+    background-color: grey; 
+    background-position: center;
+    background-size: 160px 240px; 
+    background-repeat: no-repeat;
+}
+
+.comic_item.loading[data-visible="false"]{
+    animation: blink-in 1s infinite;
+    background-image: none !important;
+}
+
+.comic_item[data-available="false"]{ 
+    animation: none;
+    background-image: none !important;
+}
+
+.profile_img[data-visible="false"]{
+    animation: blink-in 1s infinite;
+}
+
+.profile_name[data-visible="false"]{
+  background-color: grey;
+  border-radius: 10px;
+  width: 5rem; 
+  height: 1.5rem;
+  animation: blink-in 1s infinite; 
+}
+
+.profile_detail[data-visible="false"]{
+  background-color: grey;
+  border-radius: 10px;
+  width: 10rem; 
+  height: 1.5rem ;
+  animation: blink-in 1s infinite; 
+}
+
+@keyframes blink-in {
+  0%{
+    background-color: rgb(48, 47, 47);
+  }
+  50%{
+    background-color: rgba(150, 148, 148, 0.678);
+  }
+  100%{
+    background-color: rgb(48, 47, 47);
+}
+}

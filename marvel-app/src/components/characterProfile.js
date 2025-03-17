@@ -1,22 +1,33 @@
-import '../styles/heroProfiles.css'; 
 import CryptoJS from 'crypto-js';
 
 const tabsContainer = document.querySelectorAll('.tab > button'); 
 const comicItems = document.querySelectorAll('.comic_item'); 
 
-tabsContainer.forEach((tab) => {
+const profileImg = document.querySelector('.profile_img'); 
+const profileName = document.querySelector('.profile_name'); 
+const profileDetail = document.querySelector('.profile_detail'); 
+
+tabsContainer.forEach((tab, index) => {
     tab.addEventListener('click', (e) => {
         e.stopPropagation();
         const typeOfData = tab.getAttribute('id'); 
         const numOfData = tab.getAttribute('data-content'); 
         const characterID = document.querySelector('.profile_img').getAttribute('data-characterid');
-        
+
+        const curr = document.getElementsByClassName('active'); 
+
+        if( curr.length > 0){
+            curr[0].classList.remove('active'); 
+        }
+
         comicItems.forEach((item) => {
             item.setAttribute('data-visible', 'false'); 
             item.setAttribute('data-available', 'false'); 
             item.classList.add('loading'); 
             item.textContent = '';
         });
+
+        tabsContainer[index].classList.add('active'); 
 
         fetchComics(`${typeOfData}`, numOfData, characterID); 
     }) ;
@@ -52,16 +63,32 @@ async function fetchComics(typeOfData, numOfData, characterID){
     }
     comicItems.forEach((item) => {
         if(item.getAttribute('data-available') === 'false'){
-            item.textContent = 'Nothing found'; 
+            item.textContent = `no ${typeOfData} found`; 
             item.classList.remove('loading');
         }
     });
 }   
 
+const removeActiveBtn = document.querySelectorAll('.tab button'); 
+const removePrevContentInfo = document.querySelectorAll('.comic_item'); 
+
 export function characterPage(characterDetails){
+
+    removeActiveBtn.forEach((btn) => {
+        btn.classList.remove('active'); 
+    });
+
+    removePrevContentInfo.forEach((item) => {
+        item.setAttribute('data-available', 'false'); 
+        item.textContent = '';
+    });
+
+    profileImg.setAttribute('data-visible', 'true'); 
+    profileName.setAttribute('data-visible', 'true');
+    profileDetail.setAttribute('data-visible', 'true'); 
+
     const img = `${characterDetails.thumbnail.path}.${characterDetails.thumbnail.extension}`;
 
-    const profileImg = document.querySelector('.profile_img'); 
     profileImg.style.backgroundImage = `url(${img})`;
 
     profileImg.setAttribute('data-characterID', `${characterDetails.id}`); 
@@ -101,8 +128,6 @@ export function characterPage(characterDetails){
         const dataType = tab.getAttribute('id'); 
         tab.setAttribute('data-content', `${characterDetails[dataType].available}`); 
     });
-
     profileLinks.appendChild(fragment); 
-
 }
 

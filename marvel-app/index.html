@@ -19,9 +19,8 @@
     <div id="app">
       <header>
         <nav>
-          <a href="nested/character.html">link</a>
-          <div>
-            <div class="search_wrapper" aria-pressed="false">
+          <div class="search__">
+            <div class="search_wrapper">
               <img src="/search-icon.svg" alt="search icon">
               <input 
                 autocomplete="off"
@@ -31,33 +30,58 @@
                 placeholder="Search character name"
                 >
             </div>
-            <div class="search_results" aria-expanded="false"></div>
-          </div>
-        </nav>
-      </header>
-      <main>
-
-        <!-- START: RANDOM CHARACTER DISPLAY-->
-        <div class="display_content">
-          <div class="display_character">
-            <h1>CHARACTER OF THE DAY</h1>
-            <div class="character_details">
-              <div class="details_img" data-visible="false">
-                <!-- character image  -->
-              </div>
-              <div class="details_description">
-                <span class="description_name" data-visible="false"></span>
-              </div>
+            <div class="random_character">
+              <button type="button" id="get_random_character">Random Character</button>
             </div>
           </div>
+          
+          <div class="search_results"></div>
+        </nav>
+      </header>
+
+      <main>
+        <div class="character_content">
+            <div class="content_profile">
+                <div class="profile_img" data-visible="false"></div>
+                <div class="profile_description">
+                    <h1 class="profile_name" data-visible="false"></h1>
+                    <p class="profile_detail" data-visible="false"></p>
+                    <!-- <div class="text" data-visible="false">
+                    </div> -->
+                    <div class="profile_links">
+                        <ul class="links">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content_information">
+                <div class="content_tabs">
+                    <div class="tab">
+                        <button type="button" id="comics" data-content="0">Comics</button>
+                    </div>  
+                    <div class="tab">   
+                        <button type="button" id="series" data-content="0">Series</button>
+                    </div>  
+                    <div class="tab">   
+                        <button type="button" id="events" data-content="0">Events</button>
+                    </div>
+                </div>
+                <!-- tabs_panels -->
+                <div class="content_comics">
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                </div>
+            </div>
         </div>
-        <!-- END: RANDOM CHARACTER DISPLAY -->
       </main>
 
-      <footer>
-        <!-- marvel api attribute -->
+      <!-- <footer>
         <span>Data provided by Marvel. © 2014 Marvel</span>
-      </footer>
+      </footer> -->
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
