@@ -39,6 +39,8 @@ body{
 
 header{
   z-index: 9999;
+  position: fixed;
+  width: 100%;
   grid-area: header;
   background-color: #9d0208;
   padding-block: 1rem; 

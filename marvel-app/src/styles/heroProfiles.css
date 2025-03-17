@@ -67,6 +67,17 @@ a{
     }
 }
 
+.content_tabs{
+    display: flex; 
+    gap: 1rem; 
+    align-items: center;
+    justify-content: center;
+}
+
+.tab button:hover{
+    cursor: pointer;
+}
+
 .content_comics{
     display: grid; 
     margin-block-start: 5rem; 
@@ -74,6 +85,10 @@ a{
     gap: 1rem; 
     justify-content: center;
     align-items: center;
+}
+
+.empty_content_msg{
+    color: white; 
 }
 
 
@@ -84,17 +99,17 @@ a{
     border: 5px solid white; 
     background-color: grey; 
     background-position: center;
-    background-size: cover; 
+    background-size: 160px 240px; 
     background-repeat: no-repeat;
-    /* display: block; */
 }
 
-.comic_item[data-visible="false"]{
+.comic_item.loading[data-visible="false"]{
     animation: blink-in 1s infinite;
     background-image: none !important;
 }
 
-.comic_item[data-blank="true"]{
+.comic_item[data-available="false"]{ 
+    animation: none;
     background-image: none !important;
 }
 

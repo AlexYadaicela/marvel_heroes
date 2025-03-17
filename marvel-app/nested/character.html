@@ -27,7 +27,7 @@
                         type="text" 
                         name="search_character"
                         id="search_character"
-                        placeholder="Search for"
+                        placeholder="Search character name"
                     >
                 </div>
                 <div class="search_results" aria-expanded="false"></div>    
@@ -49,14 +49,27 @@
                     </div>
                 </div>
             </div>
-
-            <div class="content_comics">
-                <div class="comic_item" data-visible="false"></div>
-                <div class="comic_item" data-visible="false"></div>
-                <div class="comic_item" data-visible="false"></div>
-                <div class="comic_item" data-visible="false"></div>
-                <div class="comic_item" data-visible="false"></div>
-                <div class="comic_item" data-visible="false"></div>
+            <div class="content_information">
+                <div class="content_tabs">
+                    <div class="tab">
+                        <button type="button" id="comics" data-content="0">Comics</button>
+                    </div>  
+                    <div class="tab">   
+                        <button type="button" id="series" data-content="0">Series</button>
+                    </div>  
+                    <div class="tab">   
+                        <button type="button" id="events" data-content="0">Events</button>
+                    </div>
+                </div>
+                <!-- tabs_panels -->
+                <div class="content_comics" aria-expanded="false">
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                    <div class="comic_item" data-visible="false" data-available="false"></div>
+                </div>
             </div>
         </div>
     </main>

@@ -1,4 +1,4 @@
-import { characterPage, fetchComics } from "./characterProfile";
+import { characterPage } from "./characterProfile";
 
 export async function setUpSearch(baseUrl, ts, publickey, hash, searchTerm){
     try{
@@ -44,8 +44,7 @@ function createSearchResultBox(baseUrl, ts, publicKey, hash, fetchCharacters){
             searchResult.ariaExpanded = 'false'; 
             inputElement.value = '';
             characterPage(character);
-            fetchComics(baseUrl, ts, publicKey, hash, character.comics.available, character.id);  
-        }); 
+        });  
 
         liElement.textContent = character.name; 
         fragment.appendChild(liElement); 
