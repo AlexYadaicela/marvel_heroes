@@ -46,7 +46,7 @@ body{
   "header header"
   "main main"
   "footer footer"; 
-  grid-template-rows: 4rem auto 1rem; 
+  grid-template-rows: 4rem auto 5rem; 
 }
 
 header{
@@ -62,21 +62,13 @@ main{
   grid-area: main; 
 }
 
-/* footer{
+footer{
   grid-area: footer; 
-  font-weight: 500;
-  background-color: #9d0208; 
+  font-weight: 500; 
   display: grid;
+  color: white; 
   place-items: center;
-} */
-
-
-/* nav{
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-} */
+}
 
 .search__{
   display: flex;
