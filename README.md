@@ -1,4 +1,4 @@
-# Marvel Character Explorer
+# Marvel Character Profiles
 This project is a simple web application built with Vite and vanilla JavaScript that interacts with the Marvel API to display information about Marvel characters. 
 
 ## Prerequisites
