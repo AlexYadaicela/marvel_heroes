@@ -59,8 +59,11 @@ async function fetchComics(typeOfData, numOfData, characterID){
             });
         }catch(error){
             console.error(error.message); 
+        }finally{
+            
         }
     }
+
     comicItems.forEach((item) => {
         if(item.getAttribute('data-available') === 'false'){
             item.textContent = `no ${typeOfData} found`; 

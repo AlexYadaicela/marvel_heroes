@@ -14,17 +14,19 @@ const hash = cryptoJS.MD5(ts + privateKey + publicKey).toString();
 let timer; 
 const inputElement = document.getElementById('search_character');
 const searchResult = document.querySelector('.search_results'); 
+const loadingResultMsg = document.querySelector('.loading_result'); 
 
 // handle user search request
 inputElement.addEventListener('keyup', () => {
   clearTimeout(timer); 
-  searchResult.innerHTML = ''; 
   const searchTerm = inputElement.value; 
   if(searchTerm.length > 2 && isNaN(searchTerm)){
+    loadingResultMsg.textContent = 'loading results'; 
     timer = setTimeout(() => {
       setUpSearch(baseUrl, ts, publicKey, hash, searchTerm); 
     }, 1000);
   }
+  searchResult.innerHTML = ''; 
 });
 
 const randomCharacterBtn = document.getElementById('get_random_character'); 
