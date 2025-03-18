@@ -1,4 +1,4 @@
-import { characterPage } from "./characterProfile";
+import { characterPage} from "./characterProfile";
 
 const loadingResult = document.createElement('span'); 
 const searchResult = document.querySelector('.search_results'); 
@@ -43,7 +43,7 @@ function createSearchResultBox(fetchCharacters){
             searchResult.innerHTML = '';  
             inputElement.value = '';
 
-        characterPage(character);
+            characterPage(character);
         });  
 
         liElement.textContent = character.name; 
