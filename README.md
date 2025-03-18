@@ -22,12 +22,7 @@ This project is a simple web application built with Vite and vanilla JavaScript 
     VITE_PUBLIC_KEY=your_public_key
     ```
 
-3.  **Open `index.html` in your browser:**
-
-    * Navigate to the project folder in your file explorer.
-    * Double-click the `index.html` file. This will open the application in your default web browser.
-
-4.  **Development and Build (using Vite CLI):**
+3.  **Development and Build (using Vite CLI):**
 
     While the application can be opened directly, for optimal development and production builds, it's recommended to use Vite's CLI.
 
