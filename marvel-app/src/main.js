@@ -53,14 +53,13 @@ async function fetchRandomCharacterData(){
 
     const charUrl = `${url}&offset=${randomCharacter}`    
     response = await fetch(charUrl);
-
+    
     if(!response.ok){
       throw new Error(`Response status: ${response.status}`); 
     }
 
     const character = await response.json(); 
-    characterPage(character.data.results[0]);
-      
+    characterPage(character.data.results[0]);  
   }catch ( error ){
     console.error(error.message); 
   }finally{
