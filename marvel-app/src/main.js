@@ -20,7 +20,7 @@ const loadingResultMsg = document.querySelector('.loading_result');
 inputElement.addEventListener('keyup', () => {
   clearTimeout(timer); 
   const searchTerm = inputElement.value; 
-  if(searchTerm.length > 2 && isNaN(searchTerm)){
+  if(isNaN(searchTerm)){
     loadingResultMsg.textContent = 'loading results'; 
     timer = setTimeout(() => {
       setUpSearch(baseUrl, ts, publicKey, hash, searchTerm); 
