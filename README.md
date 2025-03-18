@@ -10,7 +10,7 @@ This project is a simple web application built with Vite and vanilla JavaScript 
 
 1.  **Download the project files:**
     * Download the project files as a ZIP archive and extract them to a folder on your computer.
-    * Alternatively, clone the repository using HTTPS `git clone <https://github.com/AlexYadaicela/marvel_heroes.git>`.
+    * Alternatively, clone the repository using HTTPS `git clone <https://github.com/AlexYadaicela/marvelcharacters.git>`.
 
 2.  **Set up Marvel API Keys:**
 
